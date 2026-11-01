@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RailSentimentTriage bot</title>
+<meta name="description" content="What the RailSentimentTriage crawler is, how it behaves, and how to block it.">
+<meta name="robots" content="index, follow">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1d1f21; --muted: #5a5f66; --rule: #e3e5e8;
+    --code-bg: #f3f4f6; --accent: #1f5fbf;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141618; --fg: #e8e9eb; --muted: #a0a6ad; --rule: #2c3035;
+      --code-bg: #1f2226; --accent: #7fb0ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 8px; }
+  h3 { font-size: 1rem; margin: 20px 0 8px; }
+  h2 { font-size: 1.1rem; margin: 36px 0 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  p, ul { margin: 0 0 12px; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: 6px; }
+  .lead { color: var(--muted); font-size: 1.05rem; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92em; }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre { background: var(--code-bg); padding: 12px 14px; border-radius: 6px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>RailSentimentTriage bot</h1>
+<p class="lead">A personal project that finds sentiment information on websites about trains and rail infrastructure.</p>
+
+<h2>Politeness</h2>
+<ul>
+  <li>Identifies as <code>RailSentimentTriage/0.1 (+https://rail-sentiment-triage.github.io/)</code> with a <code>From</code> header.</li>
+  <li>Follows <code>robots.txt</code> (<a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a>). If it can't be reached due to a server error, the site is off limits.</li>
+  <li>One connection at a time, at least 5 seconds between requests, longer if <code>Crawl-delay</code> asks.</li>
+  <li>At most 40 pages per site, at most 2 links deep.</li>
+  <li>Backs off on <code>429</code> or <code>503</code> and honors <code>Retry-After</code>.</li>
+  <li>Never logs in, submits forms, or tries to get past a CAPTCHA or block.</li>
+  <li>Skips AI analysis for sites that opt out (<code>Content-Signal</code>, <code>Content-Usage</code>, TDMRep, or <code>robots.txt</code> rules for AI crawlers). Never used for training.</li>
+</ul>
+
+<h3>How to block it</h3>
+<pre><code>User-agent: RailSentimentTriage
+Disallow: /</code></pre>
+
+<h2>Concerns</h2>
+<p>Email <a href="mailto:railbot.walrus525@aleeas.com">railbot.walrus525@aleeas.com</a>. <br> Include your domain to be permanently excluded and have stored copies deleted.</p>
+
+<footer>Last updated: November 1, 2026</footer>
+
+</main>
+</body>
+</html>
