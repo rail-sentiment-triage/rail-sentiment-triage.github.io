@@ -22,7 +22,7 @@
     margin: 0; background: var(--bg); color: var(--fg);
     font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
-  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 24px; }
   h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 8px; }
   h3 { font-size: 1rem; margin: 20px 0 8px; }
   h2 { font-size: 1.1rem; margin: 36px 0 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
@@ -48,7 +48,8 @@
 <ul>
   <li>Identifies as <code>RailSentimentTriage/0.1 (+https://rail-sentiment-triage.github.io/)</code> with a <code>From</code> header.</li>
   <li>Follows <code>robots.txt</code> (<a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a>). If it can't be reached due to a server error, the site is off limits.</li>
-  <li>One connection at a time, at least 5 seconds between requests, longer if <code>Crawl-delay</code> asks.</li>
+  <li>At least 5 seconds between page loads, longer if <code>Crawl-delay</code> asks.</li>
+  <li>JavaScript-only pages may load in a headless browser (same identity; no ads, analytics or images).</li>
   <li>At most 40 pages per site, at most 2 links deep.</li>
   <li>Backs off on <code>429</code> or <code>503</code> and honors <code>Retry-After</code>.</li>
   <li>Never logs in, submits forms, or tries to get past a CAPTCHA or block.</li>
