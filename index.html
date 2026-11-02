@@ -49,7 +49,7 @@
   <li>Identifies as <code>RailSentimentTriage/0.1 (+https://rail-sentiment-triage.github.io/)</code> with a <code>From</code> header.</li>
   <li>Follows <code>robots.txt</code> (<a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a>). If it can't be reached due to a server error, the site is off limits.</li>
   <li>At least 5 seconds between page loads, longer if <code>Crawl-delay</code> asks.</li>
-  <li>JavaScript-only pages may load in a headless browser (same identity; no ads, analytics or images).</li>
+  <li>Pages that need JavaScript may be loaded in a headless browser with the same identity. It skips images, ads and tracking scripts.</li>
   <li>At most 40 pages per site, at most 2 links deep.</li>
   <li>Backs off on <code>429</code> or <code>503</code> and honors <code>Retry-After</code>.</li>
   <li>Never logs in, submits forms, or tries to get past a CAPTCHA or block.</li>
